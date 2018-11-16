@@ -8,21 +8,31 @@ MongoClient.connect('mongodb://localhost:27017/' + DBName, (error, client) => {
     console.log('Connected to MongoDB server');
     const db = client.db(DBName);
 
-    /*db.collection('Todos').find({
-        //_id: new ObjectID('5bed2a695483e91be4ffb6ca')
-    }).count().then((count) => {
-        console.log(`Todos count: ${count}`);
-        //console.log(JSON.stringify(docs, undefined, 4));
-    }, (error) => {
-        console.log('Unable to fetch todos', error);
+    // deleteMany
+    /*db.collection('Todos').deleteMany({
+        'text': "Eat lunch"
+    }).then((result) => {
+        console.log(result);
     });*/
 
-    db.collection('Users').find({
-        name: 'Andrew'
-    }).toArray().then((docs) => {
-        console.log(JSON.stringify(docs, undefined, 4));
-    }, (error) => {
-        console.log('Unable to fetch users', error);
+    // deleteOne
+    /*db.collection('Todos').deleteOne({
+        'text': "Eat lunch"
+    }).then((result) => {
+        console.log(result);
+    });*/
+
+    // findOneAndDelete
+    /*db.collection('Todos').findOneAndDelete({
+        "_id" : ObjectID("5bed2a695483e91be4ffb6ca")
+    }).then((result) => {
+        console.log(result);
+    });*/
+
+    db.collection('Todos').deleteMany({
+        "_id": ObjectID("5bee5fe1087ba64b1ba340e2")
+    }).then((result) => {
+        console.log(result);
     });
 
    client.close();
