@@ -1,16 +1,7 @@
 let mongoose = require('mongoose');
-mongoose.Promise = global.Promise;
 
-let fs = require('fs');
-try {
-    if (fs.existsSync('./../../.env')) {
-        mongoose.connect(env.MONGODB_URI);
-    } else {
-        throw Error();
-    }
-} catch (err) {
-    mongoose.connect('mongodb://localhost:27017/TodoApp');
-}
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://nodetodoapi:nodetodoapi123@ds111461.mlab.com:11461/nodetodoapi' || 'mongodb://localhost:27017/TodoApp');
 
 module.exports = {
     mongoose
