@@ -1,8 +1,16 @@
 let mongoose = require('mongoose');
-let env = require('./../../.env');
-
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/TodoApp' || env.MONGODB_URI);
+
+let fs = require('fs');
+try {
+    if (fs.existsSync('./../../.env')) {
+        mongoose.connect(env.MONGODB_URI);
+    } else {
+        throw Error();
+    }
+} catch (err) {
+    mongoose.connect('mongodb://localhost:27017/TodoApp');
+}
 
 module.exports = {
     mongoose
