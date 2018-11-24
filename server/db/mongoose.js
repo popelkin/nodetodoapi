@@ -1,7 +1,8 @@
 let mongoose = require('mongoose');
+let env = require('./../../.env');
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://nodetodoapi:nodetodoapi123@ds111461.mlab.com:11461/nodetodoapi' || 'mongodb://localhost:27017/TodoApp');
+mongoose.connect('mongodb://localhost:27017/TodoApp' || env.MONGODB_URI);
 
 module.exports = {
     mongoose
